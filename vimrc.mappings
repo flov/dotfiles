@@ -1,0 +1,59 @@
+map <C-y> :CtrlPClearCache<CR>
+map <C-f> :NERDTreeFind<CR>
+map <C-p> :CtrlP<CR>
+
+" Get out of insert mode by typing `jj`
+imap jj <C-c>
+
+nmap gp :Gpush origin
+nmap gb :Gblame<CR>
+nmap gf :Gbrowse<CR>
+nmap gs :source %<CR>
+nmap gi :Dispatch bundle install<CR>
+nmap gd :Dispatch bundle exec rspec spec %<CR>
+
+" inside visual mode wrap in parathesis
+vmap " S"
+vmap ' S'
+vmap ) S)
+
+" hit return after searching to remove highlighting
+nnoremap <CR> :noh<CR><CR>
+
+" Leader mappings 
+map <Leader>w :w<CR>
+map <Leader>s :Gstatus<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>z :ZoomWin<CR>
+map <Leader>a :Ag
+map <Leader>q :!gitx<CR>
+map <Leader>d :Dispatch !ruby %<CR>
+map <Leader>x :ZoomWin<CR>:Gdiff<CR>
+map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
+
+" copy to clipboard
+noremap  y "*y
+noremap  Y "*Y
+noremap  p "*p
+noremap  P "*P
+vnoremap y "*y
+vnoremap Y "*Y
+vnoremap p "*p
+vnoremap P "*P
+
+" tmux vim navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <C-h> :TmuxNavigateLeft<cr>
+nnoremap <C-j> :TmuxNavigateDown<cr>
+nnoremap <C-k> :TmuxNavigateUp<cr>
+nnoremap <C-l> :TmuxNavigateRight<cr>
+
+" move lines up and down with Alt-j/Alt-k
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
+
