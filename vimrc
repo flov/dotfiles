@@ -24,8 +24,11 @@ set number        " Show linenumber
 set numberwidth=5
 set autoread      " Reload files changed outside vim
 
+" Always split git diff vertically
+set diffopt+=vertical
+
 " Open new split panes to right and bottom, which feels more natural
-set splitbelow
+"set splitbelow
 set splitright
 
 " no long delay for leader key
