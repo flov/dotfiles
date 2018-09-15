@@ -8,67 +8,79 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'thoughtbot/vim-rspec'
-" visualize your Vim undo tree
-Plugin 'sjl/gundo.vim'
-
-" Snipmate
-Plugin 'tomtom/tlib_vim'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'garbas/vim-snipmate'
-
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/ZoomWin'
-
-" Indent blocks of text
-Plugin 'michaeljsmith/vim-indent-object'
-
-" <Tab> for all your insert completion
-Plugin 'ervandew/supertab'
-
-" match more than just single characters with %
-Plugin 'tmhedberg/matchit'
-
-" Vim syntax checking
-Plugin 'vim-syntastic/syntastic'
-
-Plugin 'mileszs/ack.vim'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'ap/vim-css-color'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-dispatch.git'
-Plugin 'mattn/gist-vim'
-Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'rking/ag.vim'
-
-" multiple selection with cursor
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'posva/vim-vue'
-
-"react colorhighlighting
-Plugin 'pangloss/vim-javascript'
-Plugin 'justinj/vim-react-snippets'
-
-Plugin 'skalnik/vim-vroom'
-
-"Color scheme
-Plugin 'jpo/vim-railscasts-theme'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'altercation/vim-colors-solarized.git'
-
-Plugin 'slim-template/vim-slim.git'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'endel/vim-github-colorscheme'
 Plugin 'morhetz/gruvbox'
+" Awesome looking meta at bottom
+" Fugitive will help with git related stuff, and show branch on statusline
+Plugin 'tpope/vim-fugitive' 
+Plugin 'vim-airline/vim-airline' 
+Plugin 'vim-airline/vim-airline-themes'
+""
 
-"Sounds for vim:
-Plugin 'teddywing/auditory.vim.git'
+""" Some ESSENTIAL IDE like Pluginins for Vim
+"""
+" [2] File tree viewer
+Plugin 'scrooloose/nerdtree'
+
+" [3]
+" Several Pluginins to help work with Tmux
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'https://github.com/christoomey/vim-tmux-runner'
+Plugin 'christoomey/vim-run-interactive'
+
+" [4] search filesystem with ctrl+p
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" [5] Code highlighting and linting
+Plugin 'scrooloose/syntastic' "Run linters and display errors etc
+" Plugin 'benekastah/neomake' "Async Jobs (can use it instead of syntastic, but hard to setup)
+Plugin 'pangloss/vim-javascript' 
+Plugin 'mxw/vim-jsx'
+Plugin 'jimmyhchan/dustjs.vim' "Highlighting for Dust
+Plugin 'elmcast/elm-vim' "Highlighting for Elm
+
+" [6] Adds a ; at the end of a line by pressing <leader> ;
+Plugin 'lfilho/cosco.vim'
+
+Plugin 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
+Plugin 'vim-scripts/HTML-AutoCloseTag' "close tags after >
+Plugin 'vim-scripts/tComment' "Comment easily with gcc
+Plugin 'tpope/vim-repeat' "allow plugins to utilize . command
+Plugin 'tpope/vim-surround' "easily surround things...just read docs for info
+Plugin 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
+Plugin 'duff/vim-scratch' "Open a throwaway scratch buffer
+""
+
+""" Utilities / Extras / Etc
+"""
+" [7] Make gists of current buffer
+" View (https://github.com/mattn/gist-vim) for setup instructions
+Plugin 'mattn/webapi-vim' 
+Plugin 'mattn/gist-vim'
+
+" [8] Diary, notes, whatever. It's amazing
+Plugin 'vimwiki/vimwiki'
+
+
+" [9]
+Plugin 'SirVer/ultisnips' 
+Plugin 'justinj/vim-react-snippets' 
+Plugin 'colbycheeze/vim-snippets'
+
+" [10]
+" supertab makes tab work with autocomplete and ultisnips
+Plugin 'ervandew/supertab'
+" For YouCompleteMe, have you installed using:
+" ./install.py --tern-completer
+" Provides Async autocomplete with Tern
+Plugin 'https://github.com/Shougo/deoplete.nvim'
+" IDE like code intelligence for Javascript
+Plugin 'ternjs/tern_for_vim', {'do': 'npm install'}
+
+" Reads any .editorconfig files and sets spacing etc automatically
+Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -76,6 +88,7 @@ filetype plugin indent on    " required
 " VUNDLE Config END
 
 
+let g:airline_powerline_fonts = 1
 
 " Syntastic setup
 let g:syntastic_always_populate_loc_list = 1
