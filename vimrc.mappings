@@ -26,7 +26,7 @@ map <Leader>s :Gstatus<CR>
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>z :ZoomWin<CR>
-map <Leader>a :Ag
+map <Leader>a :Ack 
 map <Leader>q :!gitx<CR>
 map <Leader>d :Dispatch !ruby %<CR>
 map <Leader>x :ZoomWin<CR>:Gdiff<CR>
@@ -56,4 +56,9 @@ inoremap ∆ <Esc>:m .+1<CR>==gi
 inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
+
+map <C-;> :call NERDComment(0,"toggle")<CR>
+imap <C-;> :NERDCommenterToggle<CR>i
+map <leader> :NERDCommenterToggle<CR>
+
 

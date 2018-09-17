@@ -20,20 +20,25 @@ Plugin 'vim-airline/vim-airline-themes'
 
 """ Some ESSENTIAL IDE like Pluginins for Vim
 """
-" [2] File tree viewer
+" File tree viewer
 Plugin 'scrooloose/nerdtree'
+" Commenting code
+Plugin 'scrooloose/nerdcommenter'
 
-" [3]
+" Searching in vim
+Plugin 'mileszs/ack.vim'
+
 " Several Pluginins to help work with Tmux
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'https://github.com/christoomey/vim-tmux-runner'
 Plugin 'christoomey/vim-run-interactive'
+Plugin 'tpope/vim-dispatch'
 
-" [4] search filesystem with ctrl+p
+" search filesystem with ctrl+p
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" [5] Code highlighting and linting
+" Code highlighting and linting
 Plugin 'scrooloose/syntastic' "Run linters and display errors etc
 " Plugin 'benekastah/neomake' "Async Jobs (can use it instead of syntastic, but hard to setup)
 Plugin 'pangloss/vim-javascript' 
@@ -41,7 +46,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'jimmyhchan/dustjs.vim' "Highlighting for Dust
 Plugin 'elmcast/elm-vim' "Highlighting for Elm
 
-" [6] Adds a ; at the end of a line by pressing <leader> ;
+" Adds a ; at the end of a line by pressing <leader> ;
 Plugin 'lfilho/cosco.vim'
 
 Plugin 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
@@ -55,29 +60,27 @@ Plugin 'duff/vim-scratch' "Open a throwaway scratch buffer
 
 """ Utilities / Extras / Etc
 """
-" [7] Make gists of current buffer
+" Make gists of current buffer
 " View (https://github.com/mattn/gist-vim) for setup instructions
 Plugin 'mattn/webapi-vim' 
 Plugin 'mattn/gist-vim'
 
-" [8] Diary, notes, whatever. It's amazing
+" Diary, notes, whatever. It's amazing
 Plugin 'vimwiki/vimwiki'
 
 
-" [9]
+" Ultisnip snippets
 Plugin 'SirVer/ultisnips' 
 Plugin 'justinj/vim-react-snippets' 
-Plugin 'colbycheeze/vim-snippets'
+Plugin 'flov/vim-snippets'
 
 " [10]
-" supertab makes tab work with autocomplete and ultisnips
-Plugin 'ervandew/supertab'
-" For YouCompleteMe, have you installed using:
-" ./install.py --tern-completer
-" Provides Async autocomplete with Tern
 Plugin 'https://github.com/Shougo/deoplete.nvim'
 " IDE like code intelligence for Javascript
 Plugin 'ternjs/tern_for_vim', {'do': 'npm install'}
+
+" [11]
+Plugin 'vim-scripts/ZoomWin'
 
 " Reads any .editorconfig files and sets spacing etc automatically
 Plugin 'editorconfig/editorconfig-vim'
@@ -91,15 +94,31 @@ filetype plugin indent on    " required
 let g:airline_powerline_fonts = 1
 
 " Syntastic setup
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 let g:syntastic_mode_map = { 'mode': 'passive',
                             \ 'active_filetypes': ['python', 'ruby'],
                             \ 'passive_filetypes': ['html', 'javascript'] }
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
 
 " configure run spec
 let g:rspec_command = "Dispatch bin/rspec {spec}"
@@ -122,4 +141,6 @@ autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 " enable jsx highlighting also in js files
 let g:jsx_ext_required = 0
 
-
+" UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"

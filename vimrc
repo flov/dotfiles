@@ -32,7 +32,7 @@ set diffopt+=vertical
 set splitright
 
 " no long delay for leader key
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=2000 ttimeoutlen=0
 
 " Set mouse mode in iterm
 set ttyfast
@@ -40,7 +40,7 @@ set mouse=a
 
 " Softtabs, 2 spaces
 set tabstop=2
-set shiftwidth=2
+"set shiftwidth=2
 set shiftround
 set expandtab
 
