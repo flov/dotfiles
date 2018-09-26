@@ -55,29 +55,12 @@ Plugin 'vim-scripts/tComment' "Comment easily with gcc
 Plugin 'tpope/vim-repeat' "allow plugins to utilize . command
 Plugin 'tpope/vim-surround' "easily surround things...just read docs for info
 Plugin 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
-Plugin 'duff/vim-scratch' "Open a throwaway scratch buffer
 ""
-
-""" Utilities / Extras / Etc
-"""
-" Make gists of current buffer
-" View (https://github.com/mattn/gist-vim) for setup instructions
-Plugin 'mattn/webapi-vim' 
-Plugin 'mattn/gist-vim'
-
-" Diary, notes, whatever. It's amazing
-Plugin 'vimwiki/vimwiki'
-
 
 " Ultisnip snippets
 Plugin 'SirVer/ultisnips' 
 Plugin 'justinj/vim-react-snippets' 
 Plugin 'flov/vim-snippets'
-
-" [10]
-Plugin 'https://github.com/Shougo/deoplete.nvim'
-" IDE like code intelligence for Javascript
-Plugin 'ternjs/tern_for_vim', {'do': 'npm install'}
 
 " [11]
 Plugin 'vim-scripts/ZoomWin'
