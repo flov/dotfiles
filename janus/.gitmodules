@@ -1,0 +1,27 @@
+[submodule "vim-tmux-navigator"]
+	path = vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "vim-airline"]
+	path = vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim-airline-themes"]
+	path = vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim-tmux-runner"]
+	path = vim-tmux-runner
+	url = https://github.com/christoomey/vim-tmux-runner
+[submodule "vim-rspec"]
+	path = vim-rspec
+	url = https://github.com/thoughtbot/vim-rspec
+[submodule "tslime.vim"]
+	path = tslime.vim
+	url = https://github.com/jgdavey/tslime.vim
+[submodule "gruvbox"]
+	path = gruvbox
+	url = https://github.com/morhetz/gruvbox
+[submodule "mysnippets/snippets/vim-snippets"]
+	path = mysnippets/snippets/vim-snippets
+	url = https://github.com/flov/vim-snippets
+[submodule "mysnippets/vim-snippets"]
+	path = mysnippets/vim-snippets
+	url = https://github.com/flov/vim-snippets

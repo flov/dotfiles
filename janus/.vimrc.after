@@ -1,0 +1,146 @@
+color gruvbox
+
+let mapleader=","
+
+" Softtabs, 2 spaces
+set tabstop=2
+"set shiftwidth=2
+set shiftround
+set expandtab
+
+" Undo settings
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+set backupdir=$HOME/.swp,/tmp
+set directory=$HOME/.swp,/tmp
+set encoding=utf-8
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" Syntastic setup
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+let g:syntastic_mode_map = { 'mode': 'passive',
+                            \ 'active_filetypes': ['python', 'ruby'],
+                            \ 'passive_filetypes': ['html', 'javascript'] }
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+" Rspec
+let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" tslime
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+" Mappings
+
+map <C-y> :CtrlPClearCache<CR>
+map <C-f> :NERDTreeFind<CR>
+map <C-p> :CtrlP<CR>
+
+" Get out of insert mode by typing `jj`
+imap jj <C-c>
+
+nmap gp :Gpush origin
+nmap gb :Gblame<CR>
+nmap gf :Gbrowse<CR>
+nmap gs :source %<CR>
+nmap gi :Dispatch bundle install<CR>
+nmap gd :Dispatch bundle exec rspec spec %<CR>
+
+" inside visual mode wrap in parathesis
+vmap " S"
+vmap ' S'
+vmap ) S)
+
+" hit return after searching to remove highlighting
+nnoremap <CR> :noh<CR><CR>
+
+" Leader mappings 
+map <Leader>w :w<CR>
+map <Leader>s :Gstatus<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>z :ZoomWin<CR>
+map <Leader>a :Ack 
+map <Leader>q :!gitx<CR>
+map <Leader>d :Dispatch !ruby %<CR>
+map <Leader>x :ZoomWin<CR>:Gdiff<CR>
+map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
+
+" copy to clipboard
+noremap  y "*y
+noremap  Y "*Y
+noremap  p "*p
+noremap  P "*P
+vnoremap y "*y
+vnoremap Y "*Y
+vnoremap p "*p
+vnoremap P "*P
+
+" tmux vim navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <C-h> :TmuxNavigateLeft<cr>
+nnoremap <C-j> :TmuxNavigateDown<cr>
+nnoremap <C-k> :TmuxNavigateUp<cr>
+nnoremap <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
