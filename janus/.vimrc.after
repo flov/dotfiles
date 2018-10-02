@@ -4,9 +4,11 @@ let mapleader=","
 
 " Softtabs, 2 spaces
 set tabstop=2
-"set shiftwidth=2
+set softtabstop=2
+set shiftwidth=2
 set shiftround
-set expandtab
+set expandtab " Expand TABs to spaces
+
 
 " Undo settings
 set undofile                " Save undo's after file closes
@@ -47,7 +49,12 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" Syntastic setup
+" CtrlP
+" Exclude files and directories using Vim's wildignore and
+" CtrlP's own g:ctrlp_custom_ignore
+set wildignore+=*tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -62,7 +69,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_loc_list_height = 5
 
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 let g:syntastic_mode_map = { 'mode': 'passive',
@@ -121,6 +128,7 @@ map <Leader>q :!gitx<CR>
 map <Leader>d :Dispatch !ruby %<CR>
 map <Leader>x :ZoomWin<CR>:Gdiff<CR>
 map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
+map <Leader>g :SyntasticCheck<CR>
 
 " copy to clipboard
 noremap  y "*y
@@ -144,3 +152,6 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
+" SnipMate
+" adds html snippets to javascript files
+let g:snipMate.scope_aliases['javascript'] = 'html'
