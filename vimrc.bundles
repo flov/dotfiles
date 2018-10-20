@@ -30,7 +30,7 @@ Plugin 'mileszs/ack.vim'
 
 " Several Pluginins to help work with Tmux
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'https://github.com/christoomey/vim-tmux-runner'
+Plugin 'christoomey/vim-tmux-runner'
 Plugin 'christoomey/vim-run-interactive'
 Plugin 'tpope/vim-dispatch'
 
@@ -56,11 +56,6 @@ Plugin 'tpope/vim-repeat' "allow plugins to utilize . command
 Plugin 'tpope/vim-surround' "easily surround things...just read docs for info
 Plugin 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
 ""
-
-" Ultisnip snippets
-Plugin 'SirVer/ultisnips' 
-Plugin 'justinj/vim-react-snippets' 
-Plugin 'flov/vim-snippets'
 
 " [11]
 Plugin 'vim-scripts/ZoomWin'

@@ -9,6 +9,10 @@ set shiftwidth=2
 set shiftround
 set expandtab " Expand TABs to spaces
 
+" Open new split panes to right and bottom, which feels more natural than
+" Vim’s default:
+set splitbelow
+set splitright
 
 " Undo settings
 set undofile                " Save undo's after file closes
@@ -52,7 +56,19 @@ let g:airline_symbols.linenr = ''
 " CtrlP
 " Exclude files and directories using Vim's wildignore and
 " CtrlP's own g:ctrlp_custom_ignore
-set wildignore+=*tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+if exists("g:ctrlp_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor,*/.DS_Store,*/public,*/node_modules
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_map = ''
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|public|node_modules|log)$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -85,7 +101,7 @@ let g:rspec_command = 'call Send_to_Tmux("bin/rspec {spec}\n")'
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
 
 " tslime
 let g:tslime_always_current_session = 1
@@ -104,10 +120,10 @@ imap jj <C-c>
 
 nmap gp :Gpush origin
 nmap gb :Gblame<CR>
-nmap gf :Gbrowse<CR>
 nmap gs :source %<CR>
 nmap gi :Dispatch bundle install<CR>
 nmap gd :Dispatch bundle exec rspec spec %<CR>
+nmap gv :10sp ~/.vimrc.after<CR>
 
 " inside visual mode wrap in parathesis
 vmap " S"
@@ -125,7 +141,7 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>z :ZoomWin<CR>
 map <Leader>a :Ack 
 map <Leader>q :!gitx<CR>
-map <Leader>d :Dispatch !ruby %<CR>
+map <Leader>y :Dispatch !yarn add 
 map <Leader>x :ZoomWin<CR>:Gdiff<CR>
 map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
 map <Leader>g :SyntasticCheck<CR>
