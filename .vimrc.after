@@ -1,0 +1,405 @@
+let mapleader=","
+
+" Softtabs, 2 spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab " Expand TABs to spaces
+set autoindent
+set ignorecase
+" set guifont=DroidSansMono_Nerd_Font:h15
+set mouse=a
+
+" Open new split panes to righ and bottom, which feels more natural than
+" Vim’s default:
+set splitbelow
+
+" Undo settings
+set splitright
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+" set encoding=UTF-8
+set encoding=utf8
+set number
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
+" Tailwind:
+" Set the completefunc you can do this per file basis or with a mapping
+set completefunc=tailwind#complete
+" The mapping I use
+nnoremap <leader>tt :set completefunc=tailwind#complete<cr>
+" Add this autocmd to your vimrc to close the preview window after the completion is done
+autocmd CompleteDone * pclose
+
+" Bigger line spaces
+set linespace=3
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" CtrlP
+" Exclude files and directories using Vim's wildignore and
+" CtrlP's own g:ctrlp_custom_ignore
+if exists("g:ctrlp_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor,*/.DS_Store,*/public,*/node_modules
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_map = ''
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%/.git ls-files -oc --exclude-standard']
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor\|tmp\|public'
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_loc_list_height = 5
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe='npm run lint --'
+let g:syntastic_mode_map = { 'mode': 'passive',
+                            \ 'active_filetypes': ['python', 'ruby'],
+                            \ 'passive_filetypes': ['html', 'javascript'] }
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+
+" let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+" " shows method signature on auto completion, turn off if it becomes too
+" " slow
+" let g:tsuquyomi_completion_detail = 0
+" let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+" imap <C-f> <C-x><C-o>
+" " set ballooneval
+" autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+
+" tslime
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+" Mappings
+map <C-y> :CtrlPClearCache<CR>
+map <C-f> :NERDTreeFind<CR>
+map <C-p> :CtrlP<CR>
+" find another shortcut, C-r is redo
+" nmap gr :TsuRenameSymbol<CR>
+" map <Leader>q :TsuQuickFix<CR>
+" map <Leader>, :TsuQuickFix<CR>
+
+" Get out of insert mode by typing `jj`
+imap jj <C-c>
+imap jk <C-c>
+
+nmap gp :diffput<CR>
+nmap gb :Gblame<CR>
+nmap gi :Dispatch bundle install<CR>
+nmap gs :source %<CR>
+
+"nmap gv :10sp ~/.vimrc.after<CR>
+
+" inside visual mode wrap in parathesis
+vmap " S"
+vmap ' S'
+vmap ) S)
+
+" hit return after searching to remove highlighting
+" nnoremap <CR> :noh<CR><CR>
+
+let g:rspec_runner = "os_x_iterm2"
+let g:rspec_command = "bin/rspec {spec}"
+
+" Leader mappings 
+map <Leader>v :e ~/.vimrc.after<CR>
+map <Leader>w :w<CR>
+map <Leader>s :set splitbelow&<CR>:Git<CR><C-w>10-:set splitbelow<CR>
+
+map <Leader>z <C-w>m
+map <Leader>a :Ack 
+map <C-g> :Ack 
+map <Leader>y :Dispatch !pnpm install --save 
+map <Leader>d :Gdiffsplit<CR>
+map <Leader>e :exec "r! node -e 'console.log(".getline('.').")'"<CR>
+map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
+map <Leader>g :SyntasticCheck<CR>
+map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/snippets/UltiSnips/javascript_react.snippets<CR>
+map <Leader>p :Prettier<CR>
+map <Leader>f :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+
+map <Leader>o :e ~/.vimrc<CR>
+map <Leader>n :NERDTreeToggle<CR>
+map <Leader>b :BuffergatorToggle<CR>
+map <Leader>c :Gcommit<CR>
+map <Leader>q :Dispatch !pnpm 
+
+" copy to clipboard
+noremap  y "*y
+noremap  Y "*Y
+noremap  p "*p
+noremap  P "*P
+vnoremap y "*y
+vnoremap Y "*Y
+vnoremap p "*p
+vnoremap P "*P
+
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
+vmap <D-/> ++
+nmap <D-/> ++
+
+" au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.tsx,*.js,*.jsx,*.vue,*.yaml,*.json PrettierAsync
+
+" EMOJI complete - brauch ich nicht...
+" let g:emoji_complete_overwrite_standard_keymaps = 0
+" imap <C-f> <Plug>(emoji-start-complete)
+
+" omux vim navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <C-h> :TmuxNavigateLeft<cr>
+nnoremap <C-j> :TmuxNavigateDown<cr>
+nnoremap <C-k> :TmuxNavigateUp<cr>
+nnoremap <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" CtrlP for Command p
+nmap <D-p> :CtrlP<CR>
+
+let g:move_key_modifier = 'C'
+
+" matze/vim-move config
+let g:move_key_modifier = 'D'
+
+nmap <D-/> <plug>NERDCommenterToggle
+
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+nmap <D-]> :tabnext<Cr>
+nmap <D-[> :tabprevious<Cr>
+
+" Assuming you're using `<c-u>` for snippet expansion
+" imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
+imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-U>":"\<CR>")
+
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>ff  <Plug>(coc-fix-current)
+nmap ga <Plug>(coc-fix-current)
+
+" Run the Code Lens action on the current line.
+" nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Define Mac-standard keyboard shortcuts.
+
+" We don't change 'cpoptions' here, because it would not be set properly when
+" a .vimrc file is found later.  Thus don't use line continuation and use
+" <special> in mappings.
+
+nnoremap <special> <D-n> :confirm enew<CR>
+vmap <special> <D-n> <Esc><D-n>gv
+imap <special> <D-n> <C-O><D-n>
+cmap <special> <D-n> <C-C><D-n>
+omap <special> <D-n> <Esc><D-n>
+
+nnoremap <special> <D-o> :browse confirm e<CR>
+vmap <special> <D-o> <Esc><D-o>gv
+imap <special> <D-o> <C-O><D-o>
+cmap <special> <D-o> <C-C><D-o>
+omap <special> <D-o> <Esc><D-o>
+
+nnoremap <silent> <special> <D-w> :if winheight(2) < 0 <Bar> confirm enew <Bar> else <Bar> confirm close <Bar> endif<CR>
+vmap <special> <D-w> <Esc><D-w>gv
+imap <special> <D-w> <C-O><D-w>
+cmap <special> <D-w> <C-C><D-w>
+omap <special> <D-w> <Esc><D-w>
+
+nnoremap <silent> <special> <D-s> :if expand("%") == ""<Bar>browse confirm w<Bar> else<Bar>confirm w<Bar>endif<CR>
+vmap <special> <D-s> <Esc><D-s>gv
+imap <special> <D-s> <C-O><D-s>
+cmap <special> <D-s> <C-C><D-s>
+omap <special> <D-s> <Esc><D-s>
+
+nnoremap <special> <D-S-s> :browse confirm saveas<CR>
+vmap <special> <D-S-s> <Esc><D-s>gv
+imap <special> <D-S-s> <C-O><D-s>
+cmap <special> <D-S-s> <C-C><D-s>
+omap <special> <D-S-s> <Esc><D-s>
+
+" From the Edit menu of SimpleText:
+nnoremap <special> <D-z> u
+vmap <special> <D-z> <Esc><D-z>gv
+imap <special> <D-z> <C-O><D-z>
+cmap <special> <D-z> <C-C><D-z>
+omap <special> <D-z> <Esc><D-z>
+
+vnoremap <special> <D-x> "+x
+
+vnoremap <special> <D-c> "+y
+
+cnoremap <special> <D-c> <C-Y>
+
+nnoremap <special> <D-v> "+gP
+cnoremap <special> <D-v> <C-R>+
+execute 'vnoremap <script> <special> <D-v>' paste#paste_cmd['v']
+execute 'inoremap <script> <special> <D-v>' paste#paste_cmd['i']
+
+nnoremap <silent> <special> <D-a> :if &slm != ""<Bar>exe ":norm gggH<C-O>G"<Bar> else<Bar>exe ":norm ggVG"<Bar>endif<CR>
+vmap <special> <D-a> <Esc><D-a>
+imap <special> <D-a> <Esc><D-a>
+cmap <special> <D-a> <C-C><D-a>
+omap <special> <D-a> <Esc><D-a>
+
+nnoremap <special> <D-f> /
+vmap <special> <D-f> <Esc><D-f>
+imap <special> <D-f> <Esc><D-f>
+cmap <special> <D-f> <C-C><D-f>
+omap <special> <D-f> <Esc><D-f>
+
+nnoremap <special> <D-g> n
+vmap <special> <D-g> <Esc><D-g>
+imap <special> <D-g> <C-O><D-g>
+cmap <special> <D-g> <C-C><D-g>
+omap <special> <D-g> <Esc><D-g
+

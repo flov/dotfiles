@@ -1,0 +1,163 @@
+{
+  "editor.minimap.enabled": false,
+  "workbench.sideBar.location": "right",
+  "editor.tabSize": 8,
+  "vim.leader": ",",
+  "vim.history": 100,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "r"],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.rename"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.quickFix"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.format"
+        }
+      ]
+    },
+    {
+      "before": ["S"],
+      "after": ["\"", "_", "S"]
+    },
+    {
+      "before": ["s"],
+      "after": ["\"", "_", "s"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["dd"],
+      "after": ["\"", "_", "dd"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["<C-c>"],
+      "after": ["\"", "+", "y"]
+    },
+    {
+      "before": ["<C-v>"], 
+      "after":  ["\"", "+", "p"]
+    }
+  ],
+  // For normal mode
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<C-c>"],
+      "after": ["\"", "+", "y"]
+    },
+    {
+      "before": ["<C-v>"], 
+      "after":  ["\"", "+", "p"]
+    }
+  ],
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "eslint.alwaysShowStatus": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "editor.formatOnSave": false,
+  "atlascode.jira.jqlList": [
+    {
+      "id": "7a65fb01-5722-43be-96b3-2ca8769ab1ba",
+      "enabled": true,
+      "name": "My geton Issues",
+      "query": "assignee = currentUser() ORDER BY lastViewed DESC ",
+      "siteId": "c019622a-fc3d-4c6c-9f0e-3137e92e1340",
+      "monitor": true
+    }
+  ],
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "c019622a-fc3d-4c6c-9f0e-3137e92e1340",
+    "projectKey": ""
+  },
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "yaml.schemas": {
+    "file:///Users/florianvallen/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "workbench.iconTheme": "vs-minimal",
+  "window.zoomLevel": 1,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "search.quickOpen.includeHistory": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "security.workspace.trust.untrustedFiles": "open",
+  "svelte.enable-ts-plugin": true,
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "extensions.ignoreRecommendations": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vim.easymotion": true
+}
+
