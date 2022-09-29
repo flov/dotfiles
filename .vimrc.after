@@ -14,9 +14,9 @@ set mouse=a
 " Open new split panes to righ and bottom, which feels more natural than
 " Vim’s default:
 set splitbelow
+set splitright
 
 " Undo settings
-set splitright
 set undofile                " Save undo's after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -173,7 +173,7 @@ map <Leader>d :Gdiffsplit<CR>
 map <Leader>e :exec "r! node -e 'console.log(".getline('.').")'"<CR>
 map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
 map <Leader>g :SyntasticCheck<CR>
-map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/snippets/UltiSnips/javascript_react.snippets<CR>
+map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/snippets/UltiSnips/javascript-react.snippets<CR>
 map <Leader>p :Prettier<CR>
 map <Leader>f :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -234,6 +234,12 @@ let g:NERDSpaceDelims = 1
 
 nmap <D-]> :tabnext<Cr>
 nmap <D-[> :tabprevious<Cr>
+
+"Copilot doesn't run on node 18
+let g:copilot_node_command = "~/.nvm/versions/node/v17.8.0/bin/node"
+
+
+"COC config
 
 " Assuming you're using `<c-u>` for snippet expansion
 " imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
