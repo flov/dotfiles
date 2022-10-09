@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
+Plug 'thoughtbot/vim-rspec'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'morhetz/gruvbox'
 Plug 'vim-syntastic/syntastic'
@@ -34,6 +35,9 @@ Plug 'matze/vim-move'
 Plug 'github/copilot.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-scripts/guicolorscheme.vim'
+Plug 'vim-scripts/Gundo'
+Plug 'tpope/vim-rails'
+Plug 'jeetsukumaran/vim-buffergator'
 
 call plug#end()
 

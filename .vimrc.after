@@ -87,9 +87,9 @@ if executable('ag')
 endif
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
@@ -173,7 +173,7 @@ map <Leader>d :Gdiffsplit<CR>
 map <Leader>e :exec "r! node -e 'console.log(".getline('.').")'"<CR>
 map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
 map <Leader>g :SyntasticCheck<CR>
-map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/snippets/UltiSnips/javascript-react.snippets<CR>
+map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/snippets/javascript/javascript.flov.snippets<CR>
 map <Leader>p :Prettier<CR>
 map <Leader>f :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -181,7 +181,7 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>o :e ~/.vimrc<CR>
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>b :BuffergatorToggle<CR>
-map <Leader>c :Gcommit<CR>
+map <Leader>c :Copilot<CR>
 map <Leader>q :Dispatch !pnpm 
 
 " copy to clipboard
@@ -272,6 +272,7 @@ set signcolumn=yes
 " no select by `"suggest.noselect": true` in your configuration file.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
