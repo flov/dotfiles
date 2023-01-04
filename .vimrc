@@ -9,7 +9,7 @@ Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'flov/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
