@@ -40,6 +40,8 @@ autocmd CompleteDone * pclose
 " Bigger line spaces
 set linespace=3
 
+set autoread
+
 " air-line
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#coc#enabled = 1
@@ -72,6 +74,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+let g:airline_section_b = ''
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_section_c_only_filename = 1
+
+
 " CtrlP
 " Exclude files and directories using Vim's wildignore and
 " CtrlP's own g:ctrlp_custom_ignore
@@ -89,9 +99,9 @@ if executable('ag')
 endif
 
 " Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
@@ -133,8 +143,9 @@ nmap <C-c>r <Plug>SetTmuxVars
 
 " Mappings
 map <C-y> :CtrlPClearCache<CR>
-map <C-f> :NERDTreeFind<CR>
+map <C-f> :silent! NERDTreeFind<CR>
 map <C-p> :CtrlP<CR>
+map <C-s> :w<CR>
 " find another shortcut, C-r is redo
 " nmap gr :TsuRenameSymbol<CR>
 " map <Leader>q :TsuQuickFix<CR>
@@ -170,21 +181,24 @@ map <Leader>s :set splitbelow&<CR>:Git<CR><C-w>10-:set splitbelow<CR>
 map <Leader>z <C-w>m
 map <Leader>a :Ack 
 map <C-g> :Ack 
-map <Leader>y :Dispatch !pnpm install --save 
+map <Leader>y :Dispatch !yarn add 
 map <Leader>d :Gdiffsplit<CR>
 map <Leader>e :exec "r! node -e 'console.log(".getline('.').")'"<CR>
 map <Leader>r :exec "r! ruby -e 'puts ".getline('.')."'"<CR>
 map <Leader>g :SyntasticCheck<CR>
-map <Leader>[ :e /Users/florianvallen/.local/share/nvim/plugged/vim-snippets/UltiSnips/javascript_react.snippets<CR>
+map <Leader>[ :e /Users/florian.vallen/.local/share/nvim/plugged/vim-snippets/UltiSnips/javascript_react.snippets<CR>
 map <Leader>p :Prettier<CR>
 map <Leader>f :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 
 map <Leader>o :e ~/.vimrc<CR>
-map <Leader>n :NERDTreeToggle<CR>
+map <Leader>n :silent! NERDTreeToggle<CR>
 map <Leader>b :BuffergatorToggle<CR>
-map <Leader>c :Copilot<CR>
 map <Leader>q :Dispatch !pnpm 
+nmap dp :diffput<CR>
+nmap dg :diffget<CR>
+vnoremap dp :diffput<CR>
+vnoremap dg :diffget<CR>
 
 " copy to clipboard
 noremap  y "*y
@@ -200,6 +214,9 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 vmap <D-/> ++
 nmap <D-/> ++
+
+xnoremap <A-j> :move '>+1<CR>gv=gv
+xnoremap <A-k> :move '<-2<CR>gv=gv
 
 " au BufWritePre *.css,*.svelte,*.pcss,*.html,*.ts,*.tsx,*.js,*.jsx,*.vue,*.yaml,*.json PrettierAsync
 
@@ -238,7 +255,7 @@ nmap <D-]> :tabnext<Cr>
 nmap <D-[> :tabprevious<Cr>
 
 "Copilot doesn't run on node 18
-let g:copilot_node_command = "~/.nvm/versions/node/v17.8.0/bin/node"
+" let g:copilot_node_command = "~/.nvm/versions/node/v17.8.0/bin/node"
 let g:copilot_filetypes = {
 \ 'markdown': v:true,
 \ }
@@ -387,15 +404,20 @@ cmap <special> <D-z> <C-C><D-z>
 omap <special> <D-z> <Esc><D-z>
 
 vnoremap <special> <D-x> "+x
-
+vnoremap <special> <Leader>x "+x
 vnoremap <special> <D-c> "+y
-
+vnoremap <special> <Leader>c "+y
 cnoremap <special> <D-c> <C-Y>
+cnoremap <special> <Leader>c <C-Y>
 
 nnoremap <special> <D-v> "+gP
+nnoremap <special> <Leader>v "+gP
 cnoremap <special> <D-v> <C-R>+
+cnoremap <special> <Leader>v <C-R>+
 execute 'vnoremap <script> <special> <D-v>' paste#paste_cmd['v']
+execute 'vnoremap <script> <special> <Leader>v' paste#paste_cmd['v']
 execute 'inoremap <script> <special> <D-v>' paste#paste_cmd['i']
+execute 'inoremap <script> <special> <Leader>v' paste#paste_cmd['i']
 
 nnoremap <silent> <special> <D-a> :if &slm != ""<Bar>exe ":norm gggH<C-O>G"<Bar> else<Bar>exe ":norm ggVG"<Bar>endif<CR>
 vmap <special> <D-a> <Esc><D-a>
@@ -415,3 +437,6 @@ imap <special> <D-g> <C-O><D-g>
 cmap <special> <D-g> <C-C><D-g>
 omap <special> <D-g> <Esc><D-g
 
+ " Run the current file with rspec
+ map <Leader>rr :call VimuxRunCommand("clear; be rspec " . bufname("%"))<CR>
+ map <Leader>rb :call VimuxRunCommand("clear; NODE_ICU_DATA=./node_modules/full-icu yarn jest " . bufname("%"))<CR>
