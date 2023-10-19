@@ -57,3 +57,4 @@ alias inference='cd /Users/florian.vallen/code/xing/stable_diffusion/flo/inferen
 alias gro='git rebase origin'
 alias gromaster='git rebase origin/master'
 alias gromain='git rebase origin/main'
+alias v='nvim'
