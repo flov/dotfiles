@@ -1,12 +1,5 @@
-# Function to jump to code projects
-c() {
-    cd ~/code/$1
-}
-
-# Enable auto-completion for the 'c' function
-_c() {
-    _path_files -W ~/code -/
-}
+c() { cd ~/code/$1; }
+_c() { _files -W ~/code -/; }
 compdef _c c
 
 alias hh='cd ~/code/hitchlog-api'
