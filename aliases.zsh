@@ -1,3 +1,14 @@
+# Function to jump to code projects
+c() {
+    cd ~/code/$1
+}
+
+# Enable auto-completion for the 'c' function
+_c() {
+    _path_files -W ~/code -/
+}
+compdef _c c
+
 alias hh='cd ~/code/hitchlog-api'
 alias start_pg='postgres -D /usr/local/var/postgres'
 alias be='bundle exec'
@@ -5,8 +16,6 @@ alias dl='cd ~/Downloads'
 alias rdm='be rake db:migrate'
 alias music='cd ~/Music'
 alias bi='bundle install'
-alias routes='bin/rake routes | lolcat'
-alias eye='open ~/Google\ Drive/DMT/eye.odt'
 alias backup_hitchlog='heroku pg:backups capture && curl -o latest.dump `heroku pg:backups public-url`'
 alias restore_hitchlog='pg_restore --verbose --clean --no-acl --no-owner -h localhost -U florianvallen -d hitchlog_development ./latest.dump'
 alias ni='npm install'
@@ -61,3 +70,4 @@ alias v='nvim'
 alias gpu='git push utec'
 alias gb='git checkout -b'
 alias vi='nvim'
+alias vim='nvim'
