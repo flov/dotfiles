@@ -1,7 +1,3 @@
-c() { cd ~/code/$1; }
-_c() { _files -W ~/code -/; }
-compdef _c c
-
 alias hh='cd ~/code/hitchlog-api'
 alias start_pg='postgres -D /usr/local/var/postgres'
 alias be='bundle exec'
@@ -62,3 +58,5 @@ alias gb='git checkout -b'
 alias vi='nvim'
 alias vim='nvim'
 alias zs="source ~/.zshrc"   # Reload your .zshrc file
+alias paradise-reset-development-db='neon branches --project-id broad-moon-29240440 reset br-winter-shape-a1bn6oxe --parent true'
+alias paradise-reset-test-db="neon branches --project-id=broad-moon-29240440 reset br-autumn-river-a1xbtm32 --parent"
