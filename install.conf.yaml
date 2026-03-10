@@ -12,3 +12,5 @@
     ~/.oh-my-zsh/custom/.aliases.zsh: aliases.zsh
     ~/.config/ghostty/config: ghostty.conf
     ~/Library/Application Support/Code/User/settings.json: vscodesettings.json
+    ~/.ack: ack
+    ~/.ag: ag
